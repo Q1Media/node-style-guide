@@ -109,7 +109,10 @@ var foo = "bar";
 
 ### Opening braces go on the same line
 
-Your opening braces go on the same line as the statement.
+Your opening braces go on the same line as the statement. Also, notice the 
+use of whitespace before and after the conditionstatement. There should 
+always be a space after `if` and after the closing parathesis. The same goes 
+with functions.
 
 *Right:*
 
@@ -127,8 +130,6 @@ if (true)
   console.log('losing');
 }
 ```
-
-Also, notice the use of whitespace before and after the condition statement.
 
 ### Declare one variable per var statement
 
@@ -236,7 +237,9 @@ File.fullPermissions = 0777;
 ### Object / Array creation
 
 Use trailing commas and put *short* declarations on a single line. Only quote
-keys when your interpreter complains:
+keys when your interpreter complains. Also, notice the spacing on object declaration: 
+There is always a space after the `:` and not one before it. This is the standard
+for creating an object through variable declaration.
 
 *Right:*
 
@@ -380,27 +383,6 @@ function isPercentage(val) {
   var isInRange = (val >= 0 && val <= 100);
   return isInRange;
 }
-```
-
-### Name your closures
-
-Feel free to give your closures a name. It shows that you care about them, and
-will produce better stack traces, heap and cpu profiles.
-
-*Right:*
-
-```js
-req.on('end', function onEnd() {
-  console.log('winning');
-});
-```
-
-*Wrong:*
-
-```js
-req.on('end', function() {
-  console.log('losing');
-});
 ```
 
 ### No nested closures
