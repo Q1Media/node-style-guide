@@ -18,7 +18,7 @@ according to your preferences.
 ## Table of contents
 
 ### Formatting
-* [2 Spaces for indentation](#2-spaces-for-indentation)
+* [Tabs for indentation](#2-spaces-for-indentation)
 * [Newlines](#newlines)
 * [No trailing whitespace](#no-trailing-whitespace)
 * [Use Semicolons](#use-semicolons)
