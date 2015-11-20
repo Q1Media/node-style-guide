@@ -85,9 +85,9 @@ cheap syntactic pleasures.
 [the opposition]: http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
 [hnsemicolons]: http://news.ycombinator.com/item?id=1547647
 
-### 80 characters per line
+### 120 characters per line
 
-Limit your lines to 80 characters. Yes, screens have gotten much bigger over the
+Limit your lines to 120 characters. Yes, screens have gotten much bigger over the
 last few years, but your brain has not. Use the additional room for split screen,
 your editor supports that, right?
 
@@ -128,6 +128,34 @@ if (true) {
 if (true)
 {
   console.log('losing');
+}
+```
+
+### Returning early in 'callback hell'
+
+When in callback hell getting out of functions in the event of an error is
+extremely common. In this case, you can (and should) ommit brackets, return
+the callback with the error and continue code on a second newline.
+
+*Right:*
+
+```js
+function someFunc(error, callback) {
+    if (error) return callback(error);
+    
+    var a = 'text';
+    var b = 'text';
+    // more ode here
+}
+```
+
+*Wrong*
+```js
+function someFunc(error, callback) {
+    if (error) {
+        return callback(error);
+    } else {
+    }
 }
 ```
 
