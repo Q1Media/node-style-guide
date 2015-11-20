@@ -37,7 +37,7 @@ according to your preferences.
 
 ### Conditionals
 * [Use the === operator](#use-the--operator)
-* [Use multi-line ternary operator](#use-multi-line-ternary-operator)
+* [Use single ternary operator](#use-multi-line-ternary-operator)
 * [Use descriptive conditions](#use-descriptive-conditions)
 
 ### Functions
