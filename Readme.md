@@ -59,9 +59,9 @@ according to your preferences.
 ## Formatting
 
 
-### 2 Spaces for indentation
+### Tabs for indentation
 
-Use 2 spaces for indenting your code and swear an oath to never mix tabs and
+Use tabs for indenting your code and swear an oath to never mix tabs and
 spaces - a special kind of hell is awaiting you otherwise.
 
 ### Newlines
