@@ -145,7 +145,7 @@ function someFunc(error, callback) {
     
     var a = 'text';
     var b = 'text';
-    // more ode here
+    // more code here
 }
 ```
 
@@ -155,6 +155,9 @@ function someFunc(error, callback) {
     if (error) {
         return callback(error);
     } else {
+        var a = 'text';
+        var b = 'text';
+        // more code here
     }
 }
 ```
@@ -290,6 +293,37 @@ var b = {"good": 'code'
         };
 ```
 
+### Longer array declarations should be defined on multiple lines
+
+*Right:*
+
+```js
+var a = ['hello', 'world', 'hello', 'world', 'hello', 'world', 'hello', 'world', 'hello', 'world', 'hello', 'world', 'hello', 'world', 'hello', 'world'];
+```
+
+*Wrong:*
+
+```js
+var a = [
+    'hello',
+    'world',
+    'hello',
+    'world',
+    'hello',
+    'world',
+    'hello',
+    'world',
+    'hello',
+    'world',
+    'hello',
+    'world',
+    'hello',
+    'world',
+    'hello',
+    'world'
+];
+```
+
 ## Conditionals
 
 ### Use the === operator
@@ -320,7 +354,7 @@ if (a == '') {
 
 ### Use single-line ternary operator
 
-The ternary operator should not be used on a single line. Split it up into multiple lines instead.
+The ternary operator should be used on a single line. Do not split it up into multiple lines.
 
 *Right:*
 
@@ -368,22 +402,22 @@ perfect vision and limit yourself to ~15 lines of code per function.
 
 ### Return early from functions
 
-To avoid deep nesting of if-statements, always return a function's value as early
-as possible.
+Use variables to speciify return value and return once at the end.
 
 *Right:*
 
 ```js
 function isPercentage(val) {
+  var isPercent = true;
   if (val < 0) {
-    return false;
+    isPercent = false;
   }
 
   if (val > 100) {
-    return false;
+    isPercent = false;
   }
 
-  return true;
+  return isPercent;
 }
 ```
 
@@ -449,12 +483,25 @@ You should also indent these methods so it's easier to tell they are part of the
 *Right:*
 
 ```js
-User
-  .findOne({ name: 'foo' })
+User.findOne({ name: 'foo' })
   .populate('bar')
   .exec(function(err, user) {
     return true;
   });
+````
+
+Unless the first evaluation of the chain is a function.
+
+*Right:*
+
+```js
+_login()
+  .then(function() {
+    // do stuff after login
+  })
+  .fail(function() {
+    // i failed, do other stuff
+  })
 ````
 
 *Wrong:*
@@ -484,52 +531,6 @@ User.findOne({ name: 'foo' }).populate('bar')
   });
 ````
 
-## Comments
-
-### Use slashes for comments
-
-Use slashes for both single line and multi line comments. Try to write
-comments that explain higher level mechanisms or clarify difficult
-segments of your code. Don't use comments to restate trivial things.
-
-*Right:*
-
-```js
-// 'ID_SOMETHING=VALUE' -> ['ID_SOMETHING=VALUE', 'SOMETHING', 'VALUE']
-var matches = item.match(/ID_([^\n]+)=([^\n]+)/));
-
-// This function has a nasty side effect where a failure to increment a
-// redis counter used for statistics will cause an exception. This needs
-// to be fixed in a later iteration.
-function loadUser(id, cb) {
-  // ...
-}
-
-var isSessionValid = (session.expires < Date.now());
-if (isSessionValid) {
-  // ...
-}
-```
-
-*Wrong:*
-
-```js
-// Execute a regex
-var matches = item.match(/ID_([^\n]+)=([^\n]+)/);
-
-// Usage: loadUser(5, function() { ... })
-function loadUser(id, cb) {
-  // ...
-}
-
-// Check if the session is valid
-var isSessionValid = (session.expires < Date.now());
-// If the session is valid
-if (isSessionValid) {
-  // ...
-}
-```
-
 ## Miscellaneous
 
 ### Object.freeze, Object.preventExtensions, Object.seal, with, eval
@@ -539,16 +540,6 @@ Crazy shit that you will probably never need. Stay away from it.
 ### Requires At Top
 
 Always put requires at top of file to clearly illustrate a file's dependencies. Besides giving an overview for others at a quick glance of dependencies and possible memory impact, it allows one to determine if they need a package.json file should they choose to use the file elsewhere.
-
-### Getters and setters
-
-Do not use setters, they cause more problems for people who try to use your
-software than they can solve.
-
-Feel free to use getters that are free from [side effects][sideeffect], like
-providing a length property for a collection class.
-
-[sideeffect]: http://en.wikipedia.org/wiki/Side_effect_(computer_science)
 
 ### Do not extend built-in prototypes
 
